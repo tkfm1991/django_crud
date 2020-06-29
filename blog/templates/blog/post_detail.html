@@ -1,9 +1,24 @@
-<h1>{{ object.title }} <small>written by:
-    </small><span>{{ object.author }}</span></h1>
-<p class="subheading">{{ object.date_posted|date:'Y-m-d P' }}</p>
+{% extends 'account/base.html' %}
 
+{% block body %}
 
-<ul class="aboutul">
-    <li> <i class="fa fa-check"></i>{{ object.content }}</li>
-</ul>
-<hr>
+<center>
+    <h1>{{ post.title }} <small>written by:
+        </small><span>{{ post.author }}</span></h1>
+    <p class="subheading">{{ post.date_posted|date:'Y-m-d P' }}</p>
+
+    <ul class="aboutul">
+        <li> <i class="fa fa-check"></i>{{ post.content }}</li>
+    </ul>
+    <hr>
+    <form action="{% url "post-update" post.id %}">
+        <button type="submit" class="btn btn-success slide">Updete</button>
+    </form>
+    <br>
+    <form action="{% url "post-delete" post.id %}">
+        <button type="submit" class="btn btn-danger slide">Delete</button>
+    </form>
+
+</center>
+
+{% endblock body %}
